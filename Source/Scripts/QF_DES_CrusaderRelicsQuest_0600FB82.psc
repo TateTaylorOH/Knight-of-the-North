@@ -1,20 +1,20 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
-;NEXT FRAGMENT INDEX 10
+;NEXT FRAGMENT INDEX 14
 Scriptname QF_DES_CrusaderRelicsQuest_0600FB82 Extends Quest Hidden
-
-;BEGIN ALIAS PROPERTY Thalmor01
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Thalmor01 Auto
-;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY Cuirass
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_Cuirass Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY Thalmor02
+;BEGIN ALIAS PROPERTY Gauntlets
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Thalmor02 Auto
+ReferenceAlias Property Alias_Gauntlets Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY SHIELD
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_SHIELD Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY boots
@@ -22,9 +22,9 @@ ReferenceAlias Property Alias_Thalmor02 Auto
 ReferenceAlias Property Alias_boots Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY SHIELD
+;BEGIN ALIAS PROPERTY Helm
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_SHIELD Auto
+ReferenceAlias Property Alias_Helm Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY Mace
@@ -37,27 +37,52 @@ ReferenceAlias Property Alias_Mace Auto
 ReferenceAlias Property Alias_Sword Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY Gauntlets
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Gauntlets Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY Helm
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Helm Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY Thalmor03
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Thalmor03 Auto
-;END ALIAS PROPERTY
-
-;BEGIN FRAGMENT Fragment_8
-Function Fragment_8()
+;BEGIN FRAGMENT Fragment_6
+Function Fragment_6()
 ;BEGIN CODE
+;Helm Obtained
+SetObjectiveCompleted(60)
 KOTNQuestFunctions.CheckRelics()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_12
+Function Fragment_12()
+;BEGIN CODE
+DES_CrusaderRelicsInfamyTracker.Start()
 DES_CrusaderRelicsPointerQuest.Stop()
 Stop()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_4
+Function Fragment_4()
+;BEGIN CODE
+;Cuirass Obtained
+SetObjectiveCompleted(40)
+KOTNQuestFunctions.CheckRelics()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_1
+Function Fragment_1()
+;BEGIN CODE
+;Mace Obtained
+SetObjectiveCompleted(10)
+KOTNQuestFunctions.CheckRelics()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_3
+Function Fragment_3()
+;BEGIN CODE
+;Boots Obtained
+SetObjectiveCompleted(30)
+KOTNQuestFunctions.CheckRelics()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -65,8 +90,17 @@ EndFunction
 ;BEGIN FRAGMENT Fragment_5
 Function Fragment_5()
 ;BEGIN CODE
+;Gauntlets Obtained
 SetObjectiveCompleted(50)
 KOTNQuestFunctions.CheckRelics()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_13
+Function Fragment_13()
+;BEGIN CODE
+SetStage(300)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -93,36 +127,10 @@ endWhile
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_1
-Function Fragment_1()
-;BEGIN CODE
-SetObjectiveCompleted(10)
-KOTNQuestFunctions.CheckRelics()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_6
-Function Fragment_6()
-;BEGIN CODE
-SetObjectiveCompleted(60)
-KOTNQuestFunctions.CheckRelics()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_3
-Function Fragment_3()
-;BEGIN CODE
-SetObjectiveCompleted(30)
-KOTNQuestFunctions.CheckRelics()
-;END CODE
-EndFunction
-;END FRAGMENT
-
 ;BEGIN FRAGMENT Fragment_7
 Function Fragment_7()
 ;BEGIN CODE
+;Shield Obtained
 SetObjectiveCompleted(70)
 KOTNQuestFunctions.CheckRelics()
 ;END CODE
@@ -132,16 +140,8 @@ EndFunction
 ;BEGIN FRAGMENT Fragment_2
 Function Fragment_2()
 ;BEGIN CODE
+;Sword Obtained
 SetObjectiveCompleted(20)
-KOTNQuestFunctions.CheckRelics()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_4
-Function Fragment_4()
-;BEGIN CODE
-SetObjectiveCompleted(40)
 KOTNQuestFunctions.CheckRelics()
 ;END CODE
 EndFunction
@@ -149,6 +149,8 @@ EndFunction
 
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 
+DES_CrusaderRelicsQuestFunctions Property KOTNQuestFunctions auto
+
 Quest Property DES_CrusaderRelicsPointerQuest  Auto  
 
-DES_CrusaderRelicsQuestFunctions Property KOTNQuestFunctions auto
+Quest Property DES_CrusaderRelicsInfamyTracker  Auto  
