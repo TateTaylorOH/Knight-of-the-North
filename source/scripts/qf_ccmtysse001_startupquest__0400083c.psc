@@ -2,14 +2,29 @@
 ;NEXT FRAGMENT INDEX 24
 Scriptname QF_ccMTYSSE001_StartupQuest__0400083C Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY CrusaderSword
+;BEGIN ALIAS PROPERTY CrusaderHelm
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_CrusaderSword Auto
+ReferenceAlias Property Alias_CrusaderHelm Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY CrusaderBoots
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_CrusaderBoots Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY CrusaderGloves
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_CrusaderGloves Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY CrusaderShield
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_CrusaderShield Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY Player
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_Player Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY CrusaderMace
@@ -22,24 +37,9 @@ ReferenceAlias Property Alias_CrusaderMace Auto
 ReferenceAlias Property Alias_CrusaderArmor Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY CrusaderBoots
+;BEGIN ALIAS PROPERTY CrusaderSword
 ;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_CrusaderBoots Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY Player
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Player Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY CrusaderGloves
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_CrusaderGloves Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY CrusaderHelm
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_CrusaderHelm Auto
+ReferenceAlias Property Alias_CrusaderSword Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY FalkFirebeard
@@ -47,20 +47,44 @@ ReferenceAlias Property Alias_CrusaderHelm Auto
 ReferenceAlias Property Alias_FalkFirebeard Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_10
-Function Fragment_10()
+;BEGIN FRAGMENT Fragment_22
+Function Fragment_22()
 ;BEGIN CODE
-DES_ThalmorNameReplacement.Stop()
-DES_InfamyTrackerQuest.Start()
-Utility.Wait(3)
-ccMTY_DES_BeGood.Show()
-IF GetStageDone(26)
-   (DES_InfamyTrackerQuest as DES_CrimeValues).modInfamy(3)
+SetObjectiveCompleted(57)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_18
+Function Fragment_18()
+;BEGIN CODE
+SetObjectiveCompleted(60)
+SetObjectiveDisplayed(65)
+SetObjectiveDisplayed(66)
+IF IsActive()
+   T01.SetActive()
 ENDIF
-IF GetStageDone(66)
-   (DES_InfamyTrackerQuest as DES_CrimeValues).modInfamy(3)
-ENDIF
-stop()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_23
+Function Fragment_23()
+;BEGIN CODE
+;earned the helm
+SetObjectiveCompleted(67)
+SetObjectiveDisplayed(64, abDisplayed = false)
+SetObjectiveDisplayed(65, abDisplayed = false)
+SetObjectiveDisplayed(66, abDisplayed = false)
+SetObjectiveDisplayed(67, abDisplayed = false)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_6
+Function Fragment_6()
+;BEGIN CODE
+SetObjectiveCompleted(40)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -68,9 +92,60 @@ EndFunction
 ;BEGIN FRAGMENT Fragment_11
 Function Fragment_11()
 ;BEGIN CODE
-SetObjectiveCompleted(25)
+setObjectiveCompleted(25)
 SetObjectiveFailed(26)
 SetObjectiveDisplayed(27)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_3
+Function Fragment_3()
+;BEGIN CODE
+SetObjectiveCompleted(10)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_21
+Function Fragment_21()
+;BEGIN CODE
+;earned the sword
+SetObjectiveCompleted(27)
+SetObjectiveDisplayed(24, abDisplayed = false)
+SetObjectiveDisplayed(25, abDisplayed = false)
+SetObjectiveDisplayed(26, abDisplayed = false)
+SetObjectiveDisplayed(27, abDisplayed = false)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_7
+Function Fragment_7()
+;BEGIN CODE
+SetObjectiveCompleted(50)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_17
+Function Fragment_17()
+;BEGIN CODE
+SetObjectiveCompleted(20)
+SetObjectiveDisplayed(25)
+SetObjectiveDisplayed(26)
+IF IsActive()
+   MS06Start.SetActive()
+   MS06.SetActive()
+ENDIF
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_5
+Function Fragment_5()
+;BEGIN CODE
+SetObjectiveCompleted(30)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -89,18 +164,42 @@ SetObjectiveDisplayed(27, abDisplayed = false)
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_3
-Function Fragment_3()
+;BEGIN FRAGMENT Fragment_8
+Function Fragment_8()
 ;BEGIN CODE
-SetObjectiveCompleted(10)
+SetObjectiveCompleted(60)
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_22
-Function Fragment_22()
+;BEGIN FRAGMENT Fragment_4
+Function Fragment_4()
 ;BEGIN CODE
-SetObjectiveCompleted(57)
+SetObjectiveCompleted(20)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_13
+Function Fragment_13()
+;BEGIN CODE
+SetObjectiveCompleted(65)
+SetObjectiveFailed(66)
+SetObjectiveDisplayed(67)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_19
+Function Fragment_19()
+;BEGIN CODE
+;stole the helm
+SetObjectiveCompleted(66)
+SetObjectiveFailed(65)
+SetObjectiveDisplayed(64, abDisplayed = false)
+SetObjectiveDisplayed(65, abDisplayed = false)
+SetObjectiveDisplayed(66, abDisplayed = false)
+SetObjectiveDisplayed(67, abDisplayed = false)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -190,94 +289,6 @@ ENDIF
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_7
-Function Fragment_7()
-;BEGIN CODE
-SetObjectiveCompleted(50)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_4
-Function Fragment_4()
-;BEGIN CODE
-SetObjectiveCompleted(20)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_18
-Function Fragment_18()
-;BEGIN CODE
-SetObjectiveCompleted(60)
-SetObjectiveDisplayed(65)
-SetObjectiveDisplayed(66)
-IF IsActive()
-   T01.SetActive()
-ENDIF
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_21
-Function Fragment_21()
-;BEGIN CODE
-;earned the sword
-SetObjectiveCompleted(27)
-SetObjectiveDisplayed(24, abDisplayed = false)
-SetObjectiveDisplayed(25, abDisplayed = false)
-SetObjectiveDisplayed(26, abDisplayed = false)
-SetObjectiveDisplayed(27, abDisplayed = false)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_17
-Function Fragment_17()
-;BEGIN CODE
-SetObjectiveCompleted(20)
-SetObjectiveDisplayed(25)
-SetObjectiveDisplayed(26)
-IF IsActive()
-   MS06Start.SetActive()
-   MS06.SetActive()
-ENDIF
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_13
-Function Fragment_13()
-;BEGIN CODE
-SetObjectiveCompleted(65)
-SetObjectiveFailed(66)
-SetObjectiveDisplayed(67)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_6
-Function Fragment_6()
-;BEGIN CODE
-SetObjectiveCompleted(40)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_19
-Function Fragment_19()
-;BEGIN CODE
-;stole the helm
-SetObjectiveCompleted(66)
-SetObjectiveFailed(65)
-SetObjectiveDisplayed(64, abDisplayed = false)
-SetObjectiveDisplayed(65, abDisplayed = false)
-SetObjectiveDisplayed(66, abDisplayed = false)
-SetObjectiveDisplayed(67, abDisplayed = false)
-;END CODE
-EndFunction
-;END FRAGMENT
-
 ;BEGIN FRAGMENT Fragment_9
 Function Fragment_9()
 ;BEGIN CODE
@@ -286,31 +297,21 @@ SetObjectiveCompleted(70)
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_23
-Function Fragment_23()
+;BEGIN FRAGMENT Fragment_10
+Function Fragment_10()
 ;BEGIN CODE
-;earned the helm
-SetObjectiveCompleted(67)
-SetObjectiveDisplayed(64, abDisplayed = false)
-SetObjectiveDisplayed(65, abDisplayed = false)
-SetObjectiveDisplayed(66, abDisplayed = false)
-SetObjectiveDisplayed(67, abDisplayed = false)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_5
-Function Fragment_5()
-;BEGIN CODE
-SetObjectiveCompleted(30)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_8
-Function Fragment_8()
-;BEGIN CODE
-SetObjectiveCompleted(60)
+DES_ThalmorNameReplacement.Stop()
+DES_RelicsStartupQuest.Stop()
+DES_InfamyTrackerQuest.Start()
+Utility.Wait(3)
+ccMTY_DES_BeGood.Show()
+IF GetStageDone(26)
+   (DES_InfamyTrackerQuest as DES_CrimeValues).modInfamy(3)
+ENDIF
+IF GetStageDone(66)
+   (DES_InfamyTrackerQuest as DES_CrimeValues).modInfamy(3)
+ENDIF
+stop()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -344,3 +345,5 @@ Quest Property T01  Auto
 Quest Property MS06  Auto  
 
 Quest Property MS06Start  Auto  
+
+Quest Property DES_RelicsStartupQuest  Auto  
