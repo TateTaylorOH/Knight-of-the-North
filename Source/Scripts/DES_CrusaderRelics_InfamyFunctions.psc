@@ -84,9 +84,8 @@ Function PrayToGod(ObjectReference akCaster, MagicEffect akEffect)
 {Controls modifying the Player's Infamy based on divine prayers.}
 
 	if DES_NineDivines.HasForm(akEffect) || akEffect.HasKeyword(DES_DogBlessingKeyword)
-		Debug.MessageBox("Praise God!")
 		If !ccMTYSSE001_Quest.IsRunning()
-		modInfamy(InfamyChangeShrines)
+			modInfamy(InfamyChangeShrines)
 			GoToState(CoolDown)
 		ENDIF
 	endIf
@@ -95,7 +94,19 @@ endFunction
 
 ;--------------------------------------------------
 
-Function GodlyBoon()
+MagicEffect Property PerkT01Dibella auto
+MagicEffect Property PerkT02Mara auto
+MagicEffect Property MQpathToHHShrineEffect auto
+Int Property InfamyChangeGodlyBoons auto
+
+Function ObtainGodlyBoon(ObjectReference akCaster, MagicEffect akEffect)
+
+	if akEffect == PerkT01Dibella || akEffect == PerkT02Mara || akEffect == MQpathToHHShrineEffect 
+		If !ccMTYSSE001_Quest.IsRunning()
+			modInfamy(InfamyChangeGodlyBoons)
+		ENDIF
+	endIf
+
 endFunction
 
 ;--------------------------------------------------
@@ -105,7 +116,8 @@ endFunction
 auto state Waiting
 
 	Function OnMagicEffectApply_Alias(ObjectReference akCaster, MagicEffect akEffect)
-	{Passes through OnMagicEffectApply by default.}
+	{Passes through OnMagicEffectApply events.}
+		ObtainGodlyBoon(akCaster, akEffect)
 		PrayToGod(akCaster, akEffect)
 	endFunction
 
@@ -124,5 +136,6 @@ state Cooldown
 endState
 
 Function OnMagicEffectApply_Alias(ObjectReference akCaster, MagicEffect akEffect)
-{Passes through OnMagicEffectApply during cooldown.}
+{Passes through OnMagicEffectApply events during cooldown.}
+	ObtainGodlyBoon(akCaster, akEffect)
 endFunction
