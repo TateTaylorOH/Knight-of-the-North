@@ -1,5 +1,5 @@
 Scriptname DES_CrusaderRelics_InfamyFunctions extends Quest  
-{Shared functions for the Crusader Relic's Infamy system.}
+{Shared functions for the Crusader Relics Infamy system.}
 
 ;--------------------------------------------------
 ;SHARED PROPERTIES
@@ -108,7 +108,7 @@ Function Theft(ObjectReference akOwner, ObjectReference akContainer, Location ak
 {Controls modifying the Player's Infamy based on theft.}
 
 	if aiAcquireType == 1 ; Steal
-		modInfamy(1)
+		modInfamy(InfamyChangeTheft)
 	endIf
 
 endFunction
@@ -120,7 +120,7 @@ Int Property InfamyChangeEscapeJail auto
 Function EscapeJail(Location akLocation, Form akCrimeGroup)
 {Controls modifying the Player's Infamy based on prison breaks.}
 
-	modInfamy(1)
+	modInfamy(InfamyChangeEscapeJail)
 
 endFunction
 
@@ -132,7 +132,7 @@ Function Trespassing(ObjectReference akVictim, ObjectReference akCriminal, Form 
 {Controls modifying the Player's Infamy based on trespassing.}
 
 	if aiCrime == 2 ; Trespassing
-		modInfamy(1)
+		modInfamy(InfamyChangeTrespassing)
 	endIf
 
 endFunction
