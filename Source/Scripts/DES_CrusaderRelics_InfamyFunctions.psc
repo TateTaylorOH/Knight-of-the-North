@@ -3,13 +3,10 @@ Scriptname DES_CrusaderRelics_InfamyFunctions extends Quest
 
 Import PO3_SKSEFunctions
 
-ReferenceAlias Property Alias_Player auto
-
 ;--------------------------------------------------
 ;SHARED PROPERTIES
 ;--------------------------------------------------
 
-Actor Property PlayerRef auto
 Quest Property ccMTYSSE001_Quest auto
 
 ;--------------------------------------------------
@@ -64,7 +61,10 @@ endFunction
 
 ;--------------------------------------------------
 
+Actor Property PlayerRef auto
+
 Message Property DES_FinalWarning auto
+ReferenceAlias Property Alias_Player auto
 Formlist Property DES_CrusaderRelics auto
 Message Property DES_HonorIncreaseMsg auto
 Message Property DES_HonorDecreaseMsg auto
@@ -76,7 +76,7 @@ Function InfamyMessages(float oldInfamy, float newInfamy)
 		DES_FinalWarning.Show()
 	ENDIF
 	IF !ccMTYSSE001_Quest.IsRunning()
-		IF (PlayerRef.GetItemCount(DES_CrusaderRelics) > 0)
+		IF (Player_Alias.GetItemCount(DES_CrusaderRelics) > 0)
 			IF newInfamy < oldInfamy
 				IF newInfamy <= 0 && oldInfamy >0
 					DES_HonorIncreaseMsg.Show()
