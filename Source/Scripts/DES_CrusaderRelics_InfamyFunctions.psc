@@ -3,6 +3,8 @@ Scriptname DES_CrusaderRelics_InfamyFunctions extends Quest
 
 Import PO3_SKSEFunctions
 
+ReferenceAlias Property Alias_Player auto
+
 ;--------------------------------------------------
 ;SHARED PROPERTIES
 ;--------------------------------------------------
@@ -164,9 +166,7 @@ endFunction
 
 ;--------------------------------------------------
 
-Keyword Property DES_DogBlessingKeyword auto
 Formlist Property DES_NineDivines auto
-ReferenceAlias Property Alias_Player auto
 Int Property InfamyChangeShrines auto
 Int Property Cooldown auto
 
@@ -185,6 +185,7 @@ endFunction
 ;--------------------------------------------------
 
 Spell Property FavorJobsBeggarsAbility auto
+Keyword Property DES_DogBlessingKeyword auto
 Int Property InfamyChangeCharity auto
 
 Function Charity(Form akSpell)
