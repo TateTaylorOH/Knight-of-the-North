@@ -170,7 +170,7 @@ ReferenceAlias Property Alias_Player auto
 Int Property InfamyChangeShrines auto
 Int Property Cooldown auto
 
-Function PrayToGod(ObjectReference akCaster, MagicEffect akEffect)
+Function Pray(ObjectReference akCaster, MagicEffect akEffect)
 {Modifies the Player's Infamy based on divine prayers.}
 
 	If !ccMTYSSE001_Quest.IsRunning()
@@ -187,7 +187,7 @@ endFunction
 Spell Property FavorJobsBeggarsAbility auto
 Int Property InfamyChangeCharity auto
 
-Function GiveCharity(Form akSpell)
+Function Charity(Form akSpell)
 {Modifies the Player's Infamy based on acts of charity.}
 
 	If !ccMTYSSE001_Quest.IsRunning()
@@ -204,7 +204,7 @@ endFunction
 Formlist Property DES_GodlyBoons auto
 Int Property InfamyChangeGodlyBoons auto
 
-Function ObtainGodlyBoon(ObjectReference akCaster, MagicEffect akEffect)
+Function Boon(ObjectReference akCaster, MagicEffect akEffect)
 {Modifies the Player's Infamy based on obtaining godly boons.}
 
 	If !ccMTYSSE001_Quest.IsRunning()
@@ -224,9 +224,9 @@ auto state Waiting
 Function OnMagicEffectApply_Alias(ObjectReference akCaster, MagicEffect akEffect)
 {Passes through OnMagicEffectApply events.}
 
-	ObtainGodlyBoon(akCaster, akEffect)
-	PrayToGod(akCaster, akEffect)
-	GiveCharity(akSpell)
+	Boon(akCaster, akEffect)
+	Pray(akCaster, akEffect)
+	Charity(akSpell)
 
 endFunction
 
@@ -253,6 +253,6 @@ endState
 Function OnMagicEffectApply_Alias(ObjectReference akCaster, MagicEffect akEffect)
 {Passes through OnMagicEffectApply events during cooldown.}
 
-	ObtainGodlyBoon(akCaster, akEffect)
+	Boon(akCaster, akEffect)
 
 endFunction
