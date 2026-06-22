@@ -226,12 +226,6 @@ Function OnMagicEffectApply_Alias(ObjectReference akCaster, MagicEffect akEffect
 
 	ObtainGodlyBoon(akCaster, akEffect)
 	PrayToGod(akCaster, akEffect)
-
-endFunction
-
-Function OnSpellCast_Alias(Form akSpell)
-{Passes through OnSpellCast events.}
-
 	GiveCharity(akSpell)
 
 endFunction
@@ -260,10 +254,5 @@ Function OnMagicEffectApply_Alias(ObjectReference akCaster, MagicEffect akEffect
 {Passes through OnMagicEffectApply events during cooldown.}
 
 	ObtainGodlyBoon(akCaster, akEffect)
-
-endFunction
-
-Function OnSpellCast_Alias(Form akSpell)
-{Passes through OnSpellCast events during cooldown.}
 
 endFunction
