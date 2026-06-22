@@ -21,11 +21,11 @@ Event OnStoryAddToPlayer(ObjectReference akOwner, ObjectReference akContainer, L
 endEvent
 
 Event OnStoryEscapeJail(Location akLocation, Form akCrimeGroup)
-	InfamyFunctions.EscapeJail(akLocation, akCrimeGroup)
+	InfamyFunctions.Escape(akLocation, akCrimeGroup)
 	stop()
 endEvent
 
 Event OnStoryCrimeGold(ObjectReference akVictim, ObjectReference akCriminal, Form akFaction, int aiGoldAmount, int aiCrime)
-	InfamyFunctions.Trespassing(akVictim, akCriminal, akFaction, aiGoldAmount, aiCrime)
+	InfamyFunctions.Trespass(akVictim, akCriminal, akFaction, aiGoldAmount, aiCrime)
 	stop()
 EndEvent
