@@ -20,10 +20,9 @@ Function InfamyTutorial()
 {Displays the Honor tutorial. If using PO3's Papyrus Extender it will display as a proper tutorial prompt. If not, it will be a message box.}
 	
 	int[] ExtenderVersion = GetPapyrusExtenderVersion()
-	bool ExtenderMinVer = false
 	
 	if ExtenderVersion[0] >= 6 && ExtenderVersion[1] >= 4 && ExtenderVersion[2] >= 0
-		ExtenderMinVer = true
+		bool ExtenderMinVer = true
 	endif
 	Utility.Wait(5)
 	If ExtenderMinVer
