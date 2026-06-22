@@ -142,7 +142,7 @@ endFunction
 
 Int Property InfamyChangeEscapeJail auto
 
-Function EscapeJail(Location akLocation, Form akCrimeGroup)
+Function Escape(Location akLocation, Form akCrimeGroup)
 {Modifies the Player's Infamy based on prison breaks.}
 
 	modInfamy(InfamyChangeEscapeJail)
@@ -153,7 +153,7 @@ endFunction
 
 Int Property InfamyChangeTrespassing auto
 
-Function Trespassing(ObjectReference akVictim, ObjectReference akCriminal, Form akFaction, int aiGoldAmount, int aiCrime)
+Function Trespass(ObjectReference akVictim, ObjectReference akCriminal, Form akFaction, int aiGoldAmount, int aiCrime)
 {Modifies the Player's Infamy based on trespassing.}
 
 	if aiCrime == 2 ; Trespassing
