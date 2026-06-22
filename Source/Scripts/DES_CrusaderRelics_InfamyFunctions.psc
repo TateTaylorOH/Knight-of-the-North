@@ -174,7 +174,7 @@ Function PrayToGod(ObjectReference akCaster, MagicEffect akEffect)
 {Modifies the Player's Infamy based on divine prayers.}
 
 	If !ccMTYSSE001_Quest.IsRunning()
-		if DES_NineDivines.HasForm(akEffect) || akEffect.HasKeyword(DES_DogBlessingKeyword)
+		if DES_NineDivines.HasForm(akEffect)
 			modInfamy(InfamyChangeShrines)
 			GoToState(CoolDown)
 		ENDIF
@@ -191,7 +191,7 @@ Function GiveCharity(Form akSpell)
 {Modifies the Player's Infamy based on acts of charity.}
 
 	If !ccMTYSSE001_Quest.IsRunning()
-		if akSpell == FavorJobsBeggarsAbility
+		if akSpell == FavorJobsBeggarsAbility || akEffect.HasKeyword(DES_DogBlessingKeyword)
 			modInfamy(InfamyChangeCharity)
 			GoToState(CoolDown)
 		ENDIF		
