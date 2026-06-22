@@ -4,5 +4,5 @@ Scriptname DES_CrusaderRelics_InfamyTrackerAlias extends ReferenceAlias
 DES_CrusaderRelics_InfamyFunctions Property InfamyFunctions auto
 
 Event OnMagicEffectApply(ObjectReference akCaster, MagicEffect akEffect)
-	InfamyFunctions.OnMagicEffectApply_Alias(akCaster, akEffect)
+	(GetOwningQuest() as DES_CrusaderRelics_InfamyFunctions).OnMagicEffectApply_Alias(akCaster, akEffect)
 EndEvent
