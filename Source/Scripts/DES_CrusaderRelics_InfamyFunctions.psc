@@ -171,7 +171,7 @@ Int Property InfamyChangeShrines auto
 Int Property Cooldown auto
 
 Function Pray(ObjectReference akCaster, MagicEffect akEffect)
-{Modifies the Player's Infamy based on prayers to the Divines.}
+{Modifies the Player's Infamy based on prayers to the Divines, then sets cooldown period to prevent spamming.}
 
 	If !ccMTYSSE001_Quest.IsRunning()
 		if DES_NineDivines.HasForm(akEffect)
@@ -189,7 +189,7 @@ Keyword Property DES_DogBlessingKeyword auto
 Int Property InfamyChangeCharity auto
 
 Function Charity(Form akSpell)
-{Modifies the Player's Infamy based on acts of charity.}
+{Modifies the Player's Infamy based on acts of charity, then sets cooldown period to prevent spamming.}
 
 	If !ccMTYSSE001_Quest.IsRunning()
 		if akSpell == FavorJobsBeggarsAbility || akEffect.HasKeyword(DES_DogBlessingKeyword)
@@ -223,7 +223,6 @@ endFunction
 auto state Waiting
 
 Function OnMagicEffectApply_Alias(ObjectReference akCaster, MagicEffect akEffect)
-{Passes through OnMagicEffectApply events.}
 
 	Boon(akCaster, akEffect)
 	Pray(akCaster, akEffect)
@@ -252,7 +251,7 @@ endEvent
 endState
 
 Function OnMagicEffectApply_Alias(ObjectReference akCaster, MagicEffect akEffect)
-{Passes through OnMagicEffectApply events during cooldown.}
+{Passes through OnMagicEffectApply events during cooldown period.}
 
 	Boon(akCaster, akEffect)
 
