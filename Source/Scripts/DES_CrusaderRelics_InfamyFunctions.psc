@@ -103,7 +103,7 @@ Int Property InfamyChangeMurder auto
 
 Function Murder(ObjectReference akVictim, ObjectReference akKiller, Location akLocation, int aiCrimeStatus, \
   int aiRelationshipRank)
-{Controls modifying the Player's Infamy based on murder.}
+{Modifies the Player's Infamy based on murder.}
 
 	if aiCrimeStatus
 		modInfamy(InfamyChangeMurder)
@@ -116,7 +116,7 @@ endFunction
 Int Property InfamyChangeAssault auto
 
 Function Assault(ObjectReference akVictim, ObjectReference akAttacker, Location akLocation, int aiCrime)
-{Controls modifying the Player's Infamy based on assault.}
+{Modifies the Player's Infamy based on assault.}
 
 	if aiCrime
 		modInfamy(InfamyChangeAssault)		
@@ -130,7 +130,7 @@ Int Property InfamyChangeTheft auto
 
 Function Theft(ObjectReference akOwner, ObjectReference akContainer, Location akLocation, Form akItemBase, \
   int aiAcquireType)
-{Controls modifying the Player's Infamy based on theft.}
+{Modifies the Player's Infamy based on theft.}
 
 	if aiAcquireType == 1 ; Steal
 		modInfamy(InfamyChangeTheft)
@@ -143,7 +143,7 @@ endFunction
 Int Property InfamyChangeEscapeJail auto
 
 Function EscapeJail(Location akLocation, Form akCrimeGroup)
-{Controls modifying the Player's Infamy based on prison breaks.}
+{Modifies the Player's Infamy based on prison breaks.}
 
 	modInfamy(InfamyChangeEscapeJail)
 
@@ -154,7 +154,7 @@ endFunction
 Int Property InfamyChangeTrespassing auto
 
 Function Trespassing(ObjectReference akVictim, ObjectReference akCriminal, Form akFaction, int aiGoldAmount, int aiCrime)
-{Controls modifying the Player's Infamy based on trespassing.}
+{Modifies the Player's Infamy based on trespassing.}
 
 	if aiCrime == 2 ; Trespassing
 		modInfamy(InfamyChangeTrespassing)
@@ -171,7 +171,7 @@ Int Property InfamyChangeShrines auto
 Int Property Cooldown auto
 
 Function PrayToGod(ObjectReference akCaster, MagicEffect akEffect)
-{Controls modifying the Player's Infamy based on divine prayers.}
+{Modifies the Player's Infamy based on divine prayers.}
 
 	If !ccMTYSSE001_Quest.IsRunning()
 		if DES_NineDivines.HasForm(akEffect) || akEffect.HasKeyword(DES_DogBlessingKeyword)
@@ -188,6 +188,7 @@ Spell Property FavorJobsBeggarsAbility auto
 Int Property InfamyChangeCharity auto
 
 Function GiveCharity(Form akSpell)
+{Modifies the Player's Infamy based on acts of charity.}
 
 	If !ccMTYSSE001_Quest.IsRunning()
 		if akSpell == FavorJobsBeggarsAbility
@@ -204,7 +205,7 @@ Formlist Property DES_GodlyBoons auto
 Int Property InfamyChangeGodlyBoons auto
 
 Function ObtainGodlyBoon(ObjectReference akCaster, MagicEffect akEffect)
-{Controls modifying the Player's Infamy based on obtaining godly boons.}
+{Modifies the Player's Infamy based on obtaining godly boons.}
 
 	If !ccMTYSSE001_Quest.IsRunning()
 		if DES_GodlyBoons.HasForm(akEffect)
