@@ -14,6 +14,29 @@ Quest Property ccMTYSSE001_Quest auto
 ;INFAMY FUNCTIOINS
 ;--------------------------------------------------
 
+Message Property DES_BeGood auto
+Message Property DES_BeGoodMsgBox auto
+
+Function InfamyTutorial()
+{Displays the Honor tutorial. If using PO3's Papyrus Extender it will display as a proper tutorial prompt. If not, it will be a message box.}
+	
+	int[] ExtenderVersion = GetPapyrusExtenderVersion()
+	bool ExtenderMinVer = false
+	
+	if ExtenderVersion[0] >= 6 && ExtenderVersion[1] >= 4 && ExtenderVersion[2] >= 0
+		ExtenderMinVer = true
+	endif
+	Utility.Wait(5)
+	If ExtenderMinVer
+		ShowTutorialMessage(DES_BeGood)
+	else
+		DES_BeGoodMsgBox.Show()
+	endif
+
+endFunction
+
+;--------------------------------------------------
+
 GlobalVariable Property ccMTYSSE001_CrusaderGlobalInfamy auto
 Message Property ccMTYSSE001_CrusaderRelicsShrine auto
 GlobalVariable Property ccMTYSSE001_CrusaderGlobalMessageShown auto
@@ -150,8 +173,8 @@ Int Property Cooldown auto
 Function PrayToGod(ObjectReference akCaster, MagicEffect akEffect)
 {Controls modifying the Player's Infamy based on divine prayers.}
 
-	if DES_NineDivines.HasForm(akEffect) || akEffect.HasKeyword(DES_DogBlessingKeyword)
-		If !ccMTYSSE001_Quest.IsRunning()
+	If !ccMTYSSE001_Quest.IsRunning()
+		if DES_NineDivines.HasForm(akEffect) || akEffect.HasKeyword(DES_DogBlessingKeyword)
 			modInfamy(InfamyChangeShrines)
 			GoToState(CoolDown)
 		ENDIF
@@ -161,42 +184,33 @@ endFunction
 
 ;--------------------------------------------------
 
-MagicEffect Property PerkT01Dibella auto
-MagicEffect Property PerkT02Mara auto
-MagicEffect Property MQpathToHHShrineEffect auto
-Int Property InfamyChangeGodlyBoons auto
+Spell Property FavorJobsBeggarsAbility auto
+Int Property InfamyChangeCharity auto
 
-Function ObtainGodlyBoon(ObjectReference akCaster, MagicEffect akEffect)
-{Controls modifying the Player's Infamy based on obtaining godly boons.}
+Function GiveCharity(Form akSpell)
 
-	if akEffect == PerkT01Dibella || akEffect == PerkT02Mara || akEffect == MQpathToHHShrineEffect 
-		If !ccMTYSSE001_Quest.IsRunning()
-			modInfamy(InfamyChangeGodlyBoons)
-		ENDIF
-	endIf
+	If !ccMTYSSE001_Quest.IsRunning()
+		if akSpell == FavorJobsBeggarsAbility
+			modInfamy(InfamyChangeCharity)
+			GoToState(CoolDown)
+		ENDIF		
+	endif
 
 endFunction
 
 ;--------------------------------------------------
 
-Message Property DES_BeGood auto
-Message Property DES_BeGoodMsgBox auto
+Formlist Property DES_GodlyBoons auto
+Int Property InfamyChangeGodlyBoons auto
 
-Function InfamyTutorial()
-{Displays the Honor tutorial. If using PO3's Papyrus Extender it will display as a proper tutorial prompt. If not, it will be a message box.}
-	
-	int[] ExtenderVersion = GetPapyrusExtenderVersion()
-	bool ExtenderMinVer = false
-	
-	if ExtenderVersion[0] >= 6 && ExtenderVersion[1] >= 4 && ExtenderVersion[2] >= 0
-		ExtenderMinVer = true
-	endif
-	Utility.Wait(5)
-	If ExtenderMinVer
-		ShowTutorialMessage(DES_BeGood)
-	else
-		DES_BeGoodMsgBox.Show()
-	endif
+Function ObtainGodlyBoon(ObjectReference akCaster, MagicEffect akEffect)
+{Controls modifying the Player's Infamy based on obtaining godly boons.}
+
+	If !ccMTYSSE001_Quest.IsRunning()
+		if DES_GodlyBoons.HasForm(akEffect)
+			modInfamy(InfamyChangeGodlyBoons)
+		ENDIF
+	endIf
 
 endFunction
 
@@ -211,6 +225,13 @@ Function OnMagicEffectApply_Alias(ObjectReference akCaster, MagicEffect akEffect
 
 	ObtainGodlyBoon(akCaster, akEffect)
 	PrayToGod(akCaster, akEffect)
+
+endFunction
+
+Function OnSpellCast_Alias(Form akSpell)
+{Passes through OnSpellCast events.}
+
+	GiveCharity(akSpell)
 
 endFunction
 
@@ -238,5 +259,10 @@ Function OnMagicEffectApply_Alias(ObjectReference akCaster, MagicEffect akEffect
 {Passes through OnMagicEffectApply events during cooldown.}
 
 	ObtainGodlyBoon(akCaster, akEffect)
+
+endFunction
+
+Function OnSpellCast_Alias(Form akSpell)
+{Passes through OnSpellCast events during cooldown.}
 
 endFunction
