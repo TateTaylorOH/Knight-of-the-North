@@ -1,6 +1,8 @@
 Scriptname DES_CrusaderRelics_InfamyFunctions extends Quest  
 {Shared functions for the Crusader Relics Infamy system.}
 
+Import PO3_SKSEFunctions
+
 ;--------------------------------------------------
 ;SHARED PROPERTIES
 ;--------------------------------------------------
@@ -172,6 +174,29 @@ Function ObtainGodlyBoon(ObjectReference akCaster, MagicEffect akEffect)
 			modInfamy(InfamyChangeGodlyBoons)
 		ENDIF
 	endIf
+
+endFunction
+
+;--------------------------------------------------
+
+Message Property DES_BeGood auto
+Message Property DES_BeGoodMsgBox auto
+
+Function InfamyTutorial()
+{Displays the Honor tutorial. If using PO3's Papyrus Extender it will display as a proper tutorial prompt. If not, it will be a message box.}
+	
+	int[] ExtenderVersion = GetPapyrusExtenderVersion()
+	bool ExtenderMinVer = false
+	
+	if ExtenderVersion[0] >= 6 && ExtenderVersion[1] >= 4 && ExtenderVersion[2] >= 0
+		ExtenderMinVer = true
+	endif
+	Utility.Wait(5)
+	If ExtenderMinVer
+		ShowTutorialMessage(DES_BeGood)
+	else
+		DES_BeGoodMsgBox.Show()
+	endif
 
 endFunction
 

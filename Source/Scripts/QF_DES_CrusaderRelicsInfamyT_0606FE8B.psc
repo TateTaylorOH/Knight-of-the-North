@@ -1,5 +1,5 @@
 ;BEGIN FRAGMENT CODE - Do not edit anything between this and the end comment
-;NEXT FRAGMENT INDEX 2
+;NEXT FRAGMENT INDEX 8
 Scriptname QF_DES_CrusaderRelicsInfamyT_0606FE8B Extends Quest Hidden
 
 ;BEGIN ALIAS PROPERTY Player
@@ -7,15 +7,14 @@ Scriptname QF_DES_CrusaderRelicsInfamyT_0606FE8B Extends Quest Hidden
 ReferenceAlias Property Alias_Player Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_0
-Function Fragment_0()
+;BEGIN FRAGMENT Fragment_2
+Function Fragment_2()
 ;BEGIN CODE
-Utility.Wait(5)
-DES_BeGood.Show()
+InfamyFunctions.InfamyTutorial()
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 
-Message Property DES_BeGood auto
+DES_CrusaderRelics_InfamyFunctions Property InfamyFunctions auto

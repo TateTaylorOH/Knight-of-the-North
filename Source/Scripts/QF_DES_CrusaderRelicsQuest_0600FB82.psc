@@ -2,29 +2,9 @@
 ;NEXT FRAGMENT INDEX 14
 Scriptname QF_DES_CrusaderRelicsQuest_0600FB82 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY boots
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_boots Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY Cuirass
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_Cuirass Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY Mace
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Mace Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY Gauntlets
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Gauntlets Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY Sword
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Sword Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY SHIELD
@@ -37,46 +17,31 @@ ReferenceAlias Property Alias_SHIELD Auto
 ReferenceAlias Property Alias_Helm Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_5
-Function Fragment_5()
-;BEGIN CODE
-;Gauntlets Obtained
-QuestFunctions.CheckRelics(50)
-;END CODE
-EndFunction
-;END FRAGMENT
+;BEGIN ALIAS PROPERTY Mace
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_Mace Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY boots
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_boots Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY Sword
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_Sword Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY Gauntlets
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_Gauntlets Auto
+;END ALIAS PROPERTY
 
 ;BEGIN FRAGMENT Fragment_4
 Function Fragment_4()
 ;BEGIN CODE
 ;Cuirass Obtained
 QuestFunctions.CheckRelics(40)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_2
-Function Fragment_2()
-;BEGIN CODE
-;Sword Obtained
-QuestFunctions.CheckRelics(20)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_6
-Function Fragment_6()
-;BEGIN CODE
-;Helm Obtained
-QuestFunctions.CheckRelics(60)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_13
-Function Fragment_13()
-;BEGIN CODE
-SetStage(300)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -90,30 +55,21 @@ QuestFunctions.CheckRelics(70)
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_12
-Function Fragment_12()
+;BEGIN FRAGMENT Fragment_13
+Function Fragment_13()
 ;BEGIN CODE
-DES_CrusaderRelics_InfamyTracker.Start()
 DES_CrusaderRelics_QuestPointer.Stop()
+DES_CrusaderRelics_InfamyTracker.Start()
 Stop()
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_3
-Function Fragment_3()
+;BEGIN FRAGMENT Fragment_2
+Function Fragment_2()
 ;BEGIN CODE
-;Boots Obtained
-QuestFunctions.CheckRelics(30)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_1
-Function Fragment_1()
-;BEGIN CODE
-;Mace Obtained
-QuestFunctions.CheckRelics(10)
+;Sword Obtained
+QuestFunctions.CheckRelics(20)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -136,6 +92,42 @@ While i < 80
      endIf
      i += 10
 endWhile
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_1
+Function Fragment_1()
+;BEGIN CODE
+;Mace Obtained
+QuestFunctions.CheckRelics(10)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_3
+Function Fragment_3()
+;BEGIN CODE
+;Boots Obtained
+QuestFunctions.CheckRelics(30)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_5
+Function Fragment_5()
+;BEGIN CODE
+;Gauntlets Obtained
+QuestFunctions.CheckRelics(50)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_6
+Function Fragment_6()
+;BEGIN CODE
+;Helm Obtained
+QuestFunctions.CheckRelics(60)
 ;END CODE
 EndFunction
 ;END FRAGMENT
