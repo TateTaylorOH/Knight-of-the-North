@@ -171,7 +171,7 @@ Int Property InfamyChangeShrines auto
 Int Property Cooldown auto
 
 Function Pray(ObjectReference akCaster, MagicEffect akEffect)
-{Modifies the Player's Infamy based on divine prayers.}
+{Modifies the Player's Infamy based on prayers to the Divines.}
 
 	If !ccMTYSSE001_Quest.IsRunning()
 		if DES_NineDivines.HasForm(akEffect)
@@ -206,7 +206,7 @@ Formlist Property DES_GodlyBoons auto
 Int Property InfamyChangeGodlyBoons auto
 
 Function Boon(ObjectReference akCaster, MagicEffect akEffect)
-{Modifies the Player's Infamy based on obtaining godly boons.}
+{Modifies the Player's Infamy based on receiving godly boons.}
 
 	If !ccMTYSSE001_Quest.IsRunning()
 		if DES_GodlyBoons.HasForm(akEffect)
