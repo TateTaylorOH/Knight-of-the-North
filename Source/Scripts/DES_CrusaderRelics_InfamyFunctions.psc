@@ -20,9 +20,10 @@ Function InfamyTutorial()
 {Displays the Honor tutorial. If using PO3's Papyrus Extender it will display as a proper tutorial prompt. If not, it will be a message box.}
 	
 	int[] ExtenderVersion = GetPapyrusExtenderVersion()
+	bool ExtenderMinVer
 	
 	if ExtenderVersion[0] >= 6 && ExtenderVersion[1] >= 4 && ExtenderVersion[2] >= 0
-		bool ExtenderMinVer = true
+		ExtenderMinVer = true
 	endif
 	Utility.Wait(5)
 	If ExtenderMinVer
@@ -39,7 +40,7 @@ GlobalVariable Property ccMTYSSE001_CrusaderGlobalInfamy auto
 Message Property ccMTYSSE001_CrusaderRelicsShrine auto
 GlobalVariable Property ccMTYSSE001_CrusaderGlobalMessageShown auto
 
-Function modInfamy(int i)
+Function modInfamy(int i, bool ShowMsg = true)
 {Modifies the Player's Infamy depending on input.}
 
 	IF !ccMTYSSE001_Quest.IsRunning()
@@ -53,14 +54,14 @@ Function modInfamy(int i)
 				ccMTYSSE001_Quest.SetStage(10)
 			ENDIF
 		ENDIF
-		InfamyMessages(oldInfamy, newInfamy)
+		IF ShowMsg
+			InfamyMessages(oldInfamy, newInfamy)
+		ENDIF
 	ENDIF
 
 endFunction
 
 ;--------------------------------------------------
-
-Actor Property PlayerRef auto
 
 Message Property DES_FinalWarning auto
 ReferenceAlias Property Alias_Player auto
@@ -75,7 +76,7 @@ Function InfamyMessages(float oldInfamy, float newInfamy)
 		DES_FinalWarning.Show()
 	ENDIF
 	IF !ccMTYSSE001_Quest.IsRunning()
-		IF (Player_Alias.GetItemCount(DES_CrusaderRelics) > 0)
+		IF (Alias_Player.GetActorRef().GetItemCount(DES_CrusaderRelics) > 0)
 			IF newInfamy < oldInfamy
 				IF newInfamy <= 0 && oldInfamy >0
 					DES_HonorIncreaseMsg.Show()
@@ -187,11 +188,11 @@ Spell Property FavorJobsBeggarsAbility auto
 Keyword Property DES_DogBlessingKeyword auto
 Int Property InfamyChangeCharity auto
 
-Function Charity(Form akSpell)
+Function Charity(ObjectReference akCaster, MagicEffect akEffect)
 {Modifies the Player's Infamy based on acts of charity, then sets cooldown period to prevent spamming.}
 
 	If !ccMTYSSE001_Quest.IsRunning()
-		if akSpell == FavorJobsBeggarsAbility || akEffect.HasKeyword(DES_DogBlessingKeyword)
+		if akEffect.HasKeyword(DES_DogBlessingKeyword)
 			modInfamy(InfamyChangeCharity)
 			GoToState(CoolDown)
 		ENDIF		
@@ -225,7 +226,7 @@ Function OnMagicEffectApply_Alias(ObjectReference akCaster, MagicEffect akEffect
 
 	Boon(akCaster, akEffect)
 	Pray(akCaster, akEffect)
-	Charity(akSpell)
+	Charity(akCaster, akEffect)
 
 endFunction
 
