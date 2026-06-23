@@ -126,8 +126,10 @@ Int Property InfamyChangeCharity auto
 Function Charity(ObjectReference akCaster, MagicEffect akEffect)
 {Modifies the Player's Infamy based on acts of charity, then sets cooldown period to prevent spamming.}
 
+Keyword USKPGiftOfCharity = Game.GetFormFromFile(0x1A179, "unofficial skyrim special edition patch.esp") as Keyword
+
 	If !ccMTYSSE001_Quest.IsRunning()
-		if akEffect.HasKeyword(DES_DogBlessingKeyword)
+		if akEffect.HasKeyword(USKPGiftOfCharity) || akEffect.HasKeyword(DES_DogBlessingKeyword)
 			modInfamy(InfamyChangeCharity)
 			GoToState(CoolDown)
 		ENDIF		
