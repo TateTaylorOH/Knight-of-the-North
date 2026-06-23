@@ -2,16 +2,6 @@
 ;NEXT FRAGMENT INDEX 25
 Scriptname QF_DES_CrusaderRelicsQuest_0600FB82 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY boots
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_boots Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY SHIELD
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_SHIELD Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY Cuirass
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_Cuirass Auto
@@ -22,19 +12,24 @@ ReferenceAlias Property Alias_Cuirass Auto
 ReferenceAlias Property Alias_Sword Auto
 ;END ALIAS PROPERTY
 
-;BEGIN ALIAS PROPERTY Mace
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_Mace Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY Gauntlets
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_Gauntlets Auto
 ;END ALIAS PROPERTY
 
+;BEGIN ALIAS PROPERTY boots
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_boots Auto
+;END ALIAS PROPERTY
+
 ;BEGIN ALIAS PROPERTY Helm
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_Helm Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY SHIELD
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_SHIELD Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY ArkayNote
@@ -47,48 +42,47 @@ ReferenceAlias Property Alias_ArkayNote Auto
 ReferenceAlias Property Alias_DibellaNote Auto
 ;END ALIAS PROPERTY
 
+;BEGIN ALIAS PROPERTY Mace
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_Mace Auto
+;END ALIAS PROPERTY
+
 ;BEGIN ALIAS PROPERTY RoriksteadThalmor
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_RoriksteadThalmor Auto
 ;END ALIAS PROPERTY
 
-;BEGIN FRAGMENT Fragment_7
-Function Fragment_7()
+;BEGIN FRAGMENT Fragment_19
+Function Fragment_19()
 ;BEGIN CODE
-;Shield Obtained
-QuestFunctions.CheckRelics(70)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_5
-Function Fragment_5()
-;BEGIN CODE
-;Gauntlets Obtained
-QuestFunctions.CheckRelics(50)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_14
-Function Fragment_14()
-;BEGIN CODE
-if !GetStageDone(60)
-     SetObjectiveCompleted(60)
-     SetObjectiveDisplayed(56)
-     SetObjectiveDisplayed(57)
+if !GetStageDone(20)
+     SetObjectiveCompleted(20)
+     SetObjectiveDisplayed(16)
+     SetObjectiveDisplayed(17)
 endIf
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_21
-Function Fragment_21()
+;BEGIN FRAGMENT Fragment_1
+Function Fragment_1()
 ;BEGIN CODE
-SetObjectiveCompleted(17)
-SetObjectiveDisplayed(16, false)
-SetObjectiveDisplayed(17, false)
-SetStage(20)
+;Mace Obtained
+QuestFunctions.CheckRelics(10)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_6
+Function Fragment_6()
+;BEGIN CODE
+;Helm Obtained
+IF Alias_Helm.GetRef().GetFactionOwner()
+     SetStage(57)
+else
+     SetStage(56)
+endIf
+QuestFunctions.CheckRelics(60)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -108,6 +102,66 @@ EndFunction
 Function Fragment_20()
 ;BEGIN CODE
 SetObjectiveCompleted(16)
+SetObjectiveDisplayed(16, false)
+SetObjectiveDisplayed(17, false)
+SetStage(20)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_3
+Function Fragment_3()
+;BEGIN CODE
+;Boots Obtained
+QuestFunctions.CheckRelics(30)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_13
+Function Fragment_13()
+;BEGIN CODE
+DES_CrusaderRelics_QuestPointer.Stop()
+DES_CrusaderRelics_InfamyTracker.Start()
+if GetStageDone(17)
+     InfamyFunctions.modInfamy(CrimeValues.InfamyChangeTheft, false)
+endif
+if GetStageDone(57)
+     InfamyFunctions.modInfamy(CrimeValues.InfamyChangeTheft, false)
+endif
+Stop()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_5
+Function Fragment_5()
+;BEGIN CODE
+;Gauntlets Obtained
+QuestFunctions.CheckRelics(50)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_2
+Function Fragment_2()
+;BEGIN CODE
+;Sword Obtained
+
+IF Alias_Sword.GetRef().GetFactionOwner()
+     SetStage(17)
+else
+     SetStage(16)
+endIf
+QuestFunctions.CheckRelics(20)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_21
+Function Fragment_21()
+;BEGIN CODE
+SetObjectiveCompleted(17)
 SetObjectiveDisplayed(16, false)
 SetObjectiveDisplayed(17, false)
 SetStage(20)
@@ -145,45 +199,14 @@ endWhile
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_2
-Function Fragment_2()
+;BEGIN FRAGMENT Fragment_14
+Function Fragment_14()
 ;BEGIN CODE
-;Sword Obtained
-
-IF Alias_Sword.GetRef().GetFactionOwner()
-     SetStage(17)
-else
-     SetStage(16)
+if !GetStageDone(60)
+     SetObjectiveCompleted(60)
+     SetObjectiveDisplayed(56)
+     SetObjectiveDisplayed(57)
 endIf
-QuestFunctions.CheckRelics(20)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_13
-Function Fragment_13()
-;BEGIN CODE
-DES_CrusaderRelics_QuestPointer.Stop()
-DES_CrusaderRelics_InfamyTracker.Start()
-if GetStageDone(17)
-     InfamyFunctions.Theft(NONE, NONE, NONE, NONE, \
-  1)
-endif
-if GetStageDone(57)
-     InfamyFunctions.Theft(NONE, NONE, NONE, NONE, \
-  1)
-endif
-Stop()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_4
-Function Fragment_4()
-;BEGIN CODE
-;Cuirass Obtained
-SetObjectiveDisplayed(35, false)
-QuestFunctions.CheckRelics(40)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -198,57 +221,12 @@ SetObjectiveDisplayed(40, abForce = true)
 EndFunction
 ;END FRAGMENT
 
-;BEGIN FRAGMENT Fragment_3
-Function Fragment_3()
+;BEGIN FRAGMENT Fragment_4
+Function Fragment_4()
 ;BEGIN CODE
-;Boots Obtained
-QuestFunctions.CheckRelics(30)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_19
-Function Fragment_19()
-;BEGIN CODE
-if !GetStageDone(20)
-     SetObjectiveCompleted(20)
-     SetObjectiveDisplayed(16)
-     SetObjectiveDisplayed(17)
-endIf
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_6
-Function Fragment_6()
-;BEGIN CODE
-;Helm Obtained
-IF Alias_Helm.GetRef().GetFactionOwner()
-     SetStage(57)
-else
-     SetStage(56)
-endIf
-QuestFunctions.CheckRelics(60)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_16
-Function Fragment_16()
-;BEGIN CODE
-SetObjectiveCompleted(56)
-SetObjectiveDisplayed(56, false)
-SetObjectiveDisplayed(57, false)
-SetStage(60)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_1
-Function Fragment_1()
-;BEGIN CODE
-;Mace Obtained
-QuestFunctions.CheckRelics(10)
+;Cuirass Obtained
+SetObjectiveDisplayed(35, false)
+QuestFunctions.CheckRelics(40)
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -265,6 +243,26 @@ endif
 EndFunction
 ;END FRAGMENT
 
+;BEGIN FRAGMENT Fragment_7
+Function Fragment_7()
+;BEGIN CODE
+;Shield Obtained
+QuestFunctions.CheckRelics(70)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_16
+Function Fragment_16()
+;BEGIN CODE
+SetObjectiveCompleted(56)
+SetObjectiveDisplayed(56, false)
+SetObjectiveDisplayed(57, false)
+SetStage(60)
+;END CODE
+EndFunction
+;END FRAGMENT
+
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 
 DES_CrusaderRelics_QuestFunctions Property QuestFunctions auto
@@ -274,3 +272,5 @@ Quest Property DES_CrusaderRelics_QuestPointer  Auto
 Quest Property DES_CrusaderRelics_InfamyTracker  Auto  
 
 DES_CrusaderRelics_InfamyFunctions Property InfamyFunctions auto
+
+DES_CrusaderRelics_InfamyIncrementor Property CrimeValues auto
