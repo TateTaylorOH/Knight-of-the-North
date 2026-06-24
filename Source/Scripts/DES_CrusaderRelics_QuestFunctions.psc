@@ -58,7 +58,7 @@ SoundDescriptor Property ITMGenericArmorUpSD
 endProperty
 
 Function Reequip(Form akItem)
-{Silently reequips a Player's item.}
+{Silently reequips the Player's item.}
 
 DefaultObjectManager kDefObjMan = Game.GetFormFromFile(0x00000031, "Skyrim.esm") as DefaultObjectManager
 
