@@ -21,8 +21,8 @@ Function InfamyTutorial()
 	
 	int[] ExtenderVersion = GetPapyrusExtenderVersion()
 	bool ExtenderMinVer
-	
-	if ExtenderVersion[0] >= 6 && ExtenderVersion[1] >= 4 && ExtenderVersion[2] >= 0
+
+	if (ExtenderVersion && (ExtenderVersion[0] > 6 || (ExtenderVersion[0] == 6 && ExtenderVersion[1] >= 4)))
 		ExtenderMinVer = true
 	endif
 	Utility.Wait(5)
