@@ -8,12 +8,8 @@ Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
 akSpeaker.modfavorpoints(50)
 GetOwningQuest().Setstage(250)
-Quest CrusaderQuest = Game.GetFormFromFile(0x83C, "ccmtysse001-knightsofthenine.esl") As Quest
-Quest TrackingQuest = Game.GetFormFromFile(0x85C, "Knight of the North.esp") As Quest
-IF CrusaderQuest.IsRunning()
-   CrusaderQuest.SetStage(25)
-ENDIF
-TrackingQuest.SetStage(25)
+Quest DES_CrusaderRelics_QuestPointer = Game.GetFormFromFile(0x810, "Knight of the North.esp") As Quest
+DES_CrusaderRelics_QuestPointer.SetStage(28)
 ;END CODE
 EndFunction
 ;END FRAGMENT

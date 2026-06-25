@@ -7,12 +7,8 @@ Function Fragment_0(ObjectReference akSpeakerRef)
 Actor akSpeaker = akSpeakerRef as Actor
 ;BEGIN CODE
 GetOwningQuest().SetStage(100)
-Quest CrusaderQuest = Game.GetFormFromFile(0x83C, "ccmtysse001-knightsofthenine.esl") As Quest
-Quest TrackingQuest = Game.GetFormFromFile(0x85C, "Knight of the North.esp") As Quest
-IF CrusaderQuest.IsRunning()
-   CrusaderQuest.SetStage(65)
-ENDIF
-TrackingQuest.SetStage(65)
+Quest DES_CrusaderRelics_QuestPointer = Game.GetFormFromFile(0x810, "Knight of the North.esp") As Quest
+DES_CrusaderRelics_QuestPointer.SetStage(68)
 ;END CODE
 EndFunction
 ;END FRAGMENT

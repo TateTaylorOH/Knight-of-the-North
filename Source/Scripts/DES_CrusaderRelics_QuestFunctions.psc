@@ -6,6 +6,7 @@ Scriptname DES_CrusaderRelics_QuestFunctions extends Quest
 ;--------------------------------------------------
 
 Quest Property DES_CrusaderRelics_Quest auto
+Quest Property DES_CrusaderRelics_QuestPointer auto
 
 Function CheckRelics(int o)
 {Sets the relevant objective Completed then checks to see if the Player has gathered all the Relics.}
@@ -21,7 +22,12 @@ Function CheckRelics(int o)
 		i += 10
 	endWhile
 	if s == 7
-		DES_CrusaderRelics_Quest.SetStage(255)
+		if GetStageDone(5)
+			DES_CrusaderRelics_Quest.SetStage(255)
+		else
+			DES_CrusaderRelics_QuestPointer.SetObjectiveCompleted(4)
+			DES_CrusaderRelics_Quest.SetStage(255)
+		endif			
  	endIf
 
 endFunction
