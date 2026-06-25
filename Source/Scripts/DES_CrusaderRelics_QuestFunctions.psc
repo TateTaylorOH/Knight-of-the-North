@@ -57,11 +57,6 @@ endFunction
 ;--------------------------------------------------
 
 Actor Property PlayerRef auto
-SoundDescriptor Property ITMGenericArmorUpSD
-	SoundDescriptor function get()
-		return (Game.GetForm(0x3E609) as SoundDescriptor)
-	endFunction
-endProperty
 
 Function Reequip(Form akItem)
 {Silently reequips the Player's item.}
